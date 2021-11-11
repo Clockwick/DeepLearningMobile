@@ -37,6 +37,25 @@ class CameraViewController: UIViewController {
             present(alertController, animated: true)
         }
     }
+    
+    func pendingAlert() -> Void {
+            //create an alert controller
+            let pending = UIAlertController(title: "Loading", message: nil, preferredStyle: .alert)
+
+            //create an activity indicator
+            let indicator = UIActivityIndicatorView(frame: pending.view.bounds)
+            indicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
+            //add the activity indicator as a subview of the alert controller's view
+            pending.view.addSubview(indicator)
+            indicator.isUserInteractionEnabled = false // required otherwise if there buttons in the UIAlertController you will not be able to press them
+            indicator.startAnimating()
+
+            self.present(pending, animated: true)
+
+            
+    }
+
         
 
 }
@@ -46,14 +65,15 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
         if info[UIImagePickerController.InfoKey.originalImage] != nil, let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             targetImageView.image = originalImage
             self.manager?.uploadImage(data: (self.targetImageView.image?.pngData())!, completionHandler: { (response) in
-                if !response.path.isEmpty {
-                    DispatchQueue.main.async {
-                        let alert = UIAlertController(title: "Image", message: "Uploaded successfully", preferredStyle: .alert)
-                        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                        alert.addAction(okAction)
-                        self.present(alert, animated: true)
-                    }
-                }
+//                DispatchQueue.main.async {
+//                    let alert = UIAlertController(title: "Image", message: "Uploaded successfully", preferredStyle: .alert)
+//                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//                    alert.addAction(okAction)
+//                    self.present(alert, animated: true)
+//                }
+//                if !response.path.isEmpty {
+                    
+//                }
             })
         }
         

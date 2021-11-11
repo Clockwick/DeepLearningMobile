@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct ImageRequest : Encodable
-{
-    let attachment : String
-    let fileName : String
-}
+//struct ImageRequest : Encodable
+//{
+//    let attachment : String
+//    let fileName : String
+//}

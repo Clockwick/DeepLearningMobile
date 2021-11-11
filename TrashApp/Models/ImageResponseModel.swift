@@ -9,5 +9,7 @@ import Foundation
 
 struct ImageResponse : Decodable
 {
-    let path: String
+    let success: Int
+    let accuracy: Float
+    let value: String
 }
