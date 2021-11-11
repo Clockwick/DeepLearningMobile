@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TSo-g5-HgL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TSo-g5-HgL">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -33,17 +34,26 @@
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="© 2021 Paratthakorn Sribunyong. All Rights Reserved." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXy-uc-74b">
+                                <rect key="frame" x="33" y="811" width="348" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vGu-CM-unp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="34B-0z-B6q"/>
                             <constraint firstItem="MJI-f9-hEY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="54" id="7ck-gs-72N"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="OXy-uc-74b" secondAttribute="bottom" constant="34" id="7uE-aS-2Io"/>
                             <constraint firstItem="Ad8-RR-qPG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="94P-DM-L1J"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MJI-f9-hEY" secondAttribute="trailing" constant="53" id="Ln7-rd-J3x"/>
                             <constraint firstItem="vGu-CM-unp" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="NXg-Nd-tUv"/>
+                            <constraint firstItem="OXy-uc-74b" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="33" id="Vvz-oX-grD"/>
                             <constraint firstItem="Ad8-RR-qPG" firstAttribute="top" secondItem="vGu-CM-unp" secondAttribute="bottom" constant="32" id="gPK-dF-VFw"/>
                             <constraint firstItem="MJI-f9-hEY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="79" id="nBh-Jq-IZO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OXy-uc-74b" secondAttribute="trailing" constant="33" id="xco-C8-AOj"/>
                             <constraint firstItem="vGu-CM-unp" firstAttribute="top" secondItem="MJI-f9-hEY" secondAttribute="bottom" constant="30" id="yih-lp-dLU"/>
                         </constraints>
                     </view>

@@ -10,7 +10,7 @@ import UIKit
 
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet var cameraButton: UIButton!
     @IBOutlet var chooseButton: UIButton!
     
@@ -42,23 +42,23 @@ class ViewController: UIViewController {
         picker.sourceType = .photoLibrary
         present(picker, animated: true, completion: nil)
     }
-
+    
     func pendingAlert() -> UIAlertController {
-            //create an alert controller
-            let pending = UIAlertController(title: "Loading", message: nil, preferredStyle: .alert)
-
-            //create an activity indicator
-            let indicator = UIActivityIndicatorView(frame: pending.view.bounds)
-            indicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-
-            //add the activity indicator as a subview of the alert controller's view
-            pending.view.addSubview(indicator)
-            indicator.isUserInteractionEnabled = false // required otherwise if there buttons in the UIAlertController you will not be able to press them
-            indicator.startAnimating()
-
-            self.present(pending, animated: true)
-
-            return pending
+        //create an alert controller
+        let pending = UIAlertController(title: "Loading", message: nil, preferredStyle: .alert)
+        
+        //create an activity indicator
+        let indicator = UIActivityIndicatorView(frame: pending.view.bounds)
+        indicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        //add the activity indicator as a subview of the alert controller's view
+        pending.view.addSubview(indicator)
+        indicator.isUserInteractionEnabled = false // required otherwise if there buttons in the UIAlertController you will not be able to press them
+        indicator.startAnimating()
+        
+        self.present(pending, animated: true)
+        
+        return pending
     }
 }
 
@@ -66,13 +66,12 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if info[UIImagePickerController.InfoKey.originalImage] != nil, let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             targetImageView.image = originalImage
-            print("Png data : \((self.targetImageView.image?.pngData())!)")
+            //            print("Png data : \((self.targetImageView.image?.pngData())!)")
             DispatchQueue.main.async {
                 let pending = UIAlertController(title: "", message: nil, preferredStyle: .alert)
                 let indicator = UIActivityIndicatorView(frame: pending.view.bounds)
                 indicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-
-            
+                
                 pending.view.addSubview(indicator)
                 indicator.isUserInteractionEnabled = false
                 indicator.startAnimating()
@@ -84,7 +83,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
                         case .success(let imageResponse):
                             if imageResponse.success == 1 {
                                 DispatchQueue.main.async {
-                                    let alert = UIAlertController(title: "This is \(imageResponse.value)", message: "Accuracy = \(imageResponse.accuracy)%", preferredStyle: .alert)
+                                    let alert = UIAlertController(title: "This is \(imageResponse.value).", message: "Accuracy = \(imageResponse.accuracy)%", preferredStyle: .alert)
                                     let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                                     alert.addAction(okAction)
                                     self.present(alert, animated: true)
@@ -94,7 +93,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
                             
                         case .failure(_):
                             DispatchQueue.main.async {
-                                let alert = UIAlertController(title: "Error", message: "Please upload again", preferredStyle: .alert)
+                                let alert = UIAlertController(title: "Error", message: "Please upload again later", preferredStyle: .alert)
                                 let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                                 alert.addAction(okAction)
                                 self.present(alert, animated: true)

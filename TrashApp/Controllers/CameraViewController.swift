@@ -12,11 +12,10 @@ class CameraViewController: UIViewController {
     
     private var targetImageView = UIImageView()
     var picker = UIImagePickerController()
-    private var manager: ImageManager?
+    private var manager: ImageManager = ImageManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        view.backgroundColor = .red
         picker.delegate = self
         openCamera()
     }
@@ -64,17 +63,44 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if info[UIImagePickerController.InfoKey.originalImage] != nil, let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             targetImageView.image = originalImage
-            self.manager?.uploadImage(data: (self.targetImageView.image?.pngData())!, completionHandler: { (response) in
-//                DispatchQueue.main.async {
-//                    let alert = UIAlertController(title: "Image", message: "Uploaded successfully", preferredStyle: .alert)
-//                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-//                    alert.addAction(okAction)
-//                    self.present(alert, animated: true)
-//                }
-//                if !response.path.isEmpty {
-                    
-//                }
-            })
+            DispatchQueue.main.async {
+                let pending = UIAlertController(title: "", message: nil, preferredStyle: .alert)
+                let indicator = UIActivityIndicatorView(frame: pending.view.bounds)
+                indicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                
+                pending.view.addSubview(indicator)
+                indicator.isUserInteractionEnabled = false
+                indicator.startAnimating()
+                
+                self.present(pending, animated: true) {
+                    self.manager.uploadImage(data: (self.targetImageView.image?.pngData())!, completionHandler: { (response) in
+                        self.dismiss(animated: true, completion: nil)
+                        switch response {
+                        case .success(let imageResponse):
+                            if imageResponse.success == 1 {
+                                DispatchQueue.main.async {
+                                    let alert = UIAlertController(title: "This is \(imageResponse.value).", message: "Accuracy = \(imageResponse.accuracy)%", preferredStyle: .alert)
+                                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                                    alert.addAction(okAction)
+                                    self.present(alert, animated: true)
+                                }
+                            }
+                            break;
+                            
+                        case .failure(_):
+                            DispatchQueue.main.async {
+                                let alert = UIAlertController(title: "Error", message: "Please upload again later", preferredStyle: .alert)
+                                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                                alert.addAction(okAction)
+                                self.present(alert, animated: true)
+                            }
+                            break;
+                        }
+                        self.navigationController?.popToRootViewController(animated: true)
+                        
+                    })
+                }
+            }
         }
         
         

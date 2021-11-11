@@ -10,7 +10,7 @@ import Alamofire
 
 struct Endpoints
 {
-    static let uploadImageMultiPartForm = "https://5b08-2403-6200-88a0-590-8d45-ebb1-a77b-6550.ngrok.io/predict"
+    static let uploadImageMultiPartForm = "https://376b-2403-6200-88a0-590-8d45-ebb1-a77b-6550.ngrok.io/predict"
 }
 
 struct ImageManager
